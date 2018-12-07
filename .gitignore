@@ -1,0 +1,10 @@
+node_modules
+venv
+dart*
+tsunamiDART*
+easyWave
+*.csv
+*.flt
+.ipynb_checkpoints
+bathymetry*min
+*.grd
