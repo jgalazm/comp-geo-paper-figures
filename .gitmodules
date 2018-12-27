@@ -1,3 +1,6 @@
 [submodule "Nami"]
 	path = Nami
 	url = https://github.com/jgalazm/Nami
+[submodule "easyWave"]
+	path = easyWave
+	url = https://gitext.gfz-potsdam.de/geoperil/easyWave
