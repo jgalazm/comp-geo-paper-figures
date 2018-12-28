@@ -1,0 +1,1 @@
+../../easyWave/code/src/easywave -grid ../data/bathymetryEasywave.grd -source ../data/fault.flt -time 1500 -poi pois -poi_report 
