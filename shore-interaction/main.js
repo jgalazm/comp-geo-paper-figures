@@ -21,23 +21,25 @@ let output = {
     stopTime: 60*60*5,
     displayOption: 'heights',
     pois: {
-        'p0': {'location': [8, 0]},
-        'p1': {'location': [8, 5]},
-        'p10': {'location': [-8, 0]},
-        'p11': {'location': [-8, 5]},
-        'p12': {'location': [-8, -5]},
-        'p13': {'location': [-8, 10]},
-        'p14': {'location': [-8, -10]},
-        'p2': {'location': [8, -5]},
-        'p3': {'location': [8, 10]},
-        'p4': {'location': [8, -10]},
-        'p5': {'location': [0, 0]},
-        'p6': {'location': [0, 5]},
-        'p7': {'location': [0, -5]},
-        'p8': {'location': [0, 10]},
-        'p9': {'location': [0, -10]}
+        'p0': {'location': [-8, 10]},
+        'p1': {'location': [0, 10]},
+        'p10': {'location': [0, -5]},
+        'p11': {'location': [8, -5]},
+        'p12': {'location': [-8, -10]},
+        'p13': {'location': [0, -10]},
+        'p14': {'location': [8, -10]},
+        'p2': {'location': [8, 10]},
+        'p3': {'location': [-8, 5]},
+        'p4': {'location': [0, 5]},
+        'p5': {'location': [8, 5]},
+        'p6': {'location': [-8, 0]},
+        'p7': {'location': [0, 0]},
+        'p8': {'location': [8, 0]},
+        'p9': {'location': [-8, -5]}
     }
 };
+
+let expectedOutput = 300;
 
 let lifeCycle = {
     
@@ -55,12 +57,13 @@ let lifeCycle = {
     },
 
     modelStepDidFinish: (model, controller) =>{
-        
         if(model.discretization.stepNumber % 10 === 0){
             console.log(model.discretization.stepNumber);
         }
-        if(model.discretization.stepNumber % 300 ===0){
+        if(model.currentTime > expectedOutput ){
+
             // controller.downloadCurrentGridHeights();
+            expectedOutput = expectedOutput +300;
         }
         if(model.discretization.stepNumber % 10 !== 0){
             return true;
