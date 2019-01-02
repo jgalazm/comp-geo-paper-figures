@@ -17,3 +17,7 @@ poi_rejected.lst
 initialSurface
 shore-interaction/bathymetry
 shore-interaction/easywave/easywave
+shore-interaction/nami/pois1000
+shore-interaction/nami/pois4000
+shore-interaction/nami/pois50
+shore-interaction/nami/poism4000
