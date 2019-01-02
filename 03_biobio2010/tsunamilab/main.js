@@ -38,8 +38,8 @@ let colormap = {
 
 
 
-// let w = parseInt(4000);
-// let h = parseInt(2800);
+let w = parseInt(4717);
+let h = parseInt(2600);
 
 // 12min
 // let w = 1000;
@@ -50,12 +50,13 @@ let colormap = {
 // let h = 934;
 
 // 10 min
-let w = 1415;
-let h = 780;
+// let w = 1415;
+// let h = 780;
 
 // small 5min
 // let w = 1050;
 // let h = 850;
+debugger;
 
 
 let data = {
@@ -70,7 +71,7 @@ let data = {
     waveWidth: w,
     waveHeight: h,
     coordinates: 'spherical',
-    bathymetry: '../data/bathymetry10min',
+    bathymetry: '../data/bathymetry3min',
     // bathymetry: '../data/bathymetry_small5min',
     binaryBathymetry: true,
     earthquake: '../data/earthquake.csv',
@@ -78,8 +79,8 @@ let data = {
 
 let output = {
     colormap: colormap,
-    displayWidth:  w/2,
-    displayHeight: h/2,
+    displayWidth:  w/4,
+    displayHeight: h/4,
     stopTime: 60*60*25,
     displayOption: 'heights',
     pois:{
@@ -154,5 +155,4 @@ let lifeCycle = {
         document.body.appendChild(model.canvas);
     }
 }
-debugger;
 let thisApp = new NAMI.app(data, output, lifeCycle);
