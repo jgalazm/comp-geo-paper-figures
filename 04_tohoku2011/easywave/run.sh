@@ -1,0 +1,1 @@
+../../easyWave/code/src/easywave -grid ../../03_biobio2010/data/bathymetryEasywave_3min.grd -source ../data/fault.flt -time 1500 -poi pois -poi_report -propagation 1200
