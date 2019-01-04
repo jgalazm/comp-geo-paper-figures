@@ -9,7 +9,7 @@ bathymetry*min
 *.grd
 tlab2D*
 pois
-eWave*2D*
+eWave*
 easywave.log
 poi_accepted.lst
 poi_rejected.lst
