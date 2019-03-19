@@ -1,6 +1,6 @@
 node_modules
 venv
-dart*
+dart[2-5]*
 tsunamiDART*
 *.csv
 *.flt
