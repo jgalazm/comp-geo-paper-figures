@@ -1,3 +1,5 @@
+let timeStart, timeEnd;
+
 let cmin = -1.0;
 let cmax = 1.0;
 let colormap = {    
@@ -107,14 +109,19 @@ let output = {
     }
 };
 
+console.log('did something!!')
 let lifeCycle = {
     controllerSimulationDidFinish : (model, controller) =>{
         // controller.5();
 
-        
+        timeEnd = performance.now();
         controller.downloadMaximumHeights();
         controller.downloadArrivalTimes() 
         controller.downloadAllPois();    
+
+        const el = document.createElement('h1');
+        el.textContent = `${timeEnd-timeStart} ms`;
+        document.body.appendChild(el);
 
         // let arrivalsBuffer = [ ... model.currentArrivalTimes ];
 
@@ -155,4 +162,7 @@ let lifeCycle = {
         document.body.appendChild(model.canvas);
     }
 }
-let thisApp = new NAMI.app(data, output, lifeCycle);
+
+
+timeStart = performance.now()
+let thisApp = new Nami(data, output, lifeCycle);
