@@ -67,6 +67,12 @@ let data = {
     xmax :  325.83,
     ymin :  -60,
     ymax : 70,
+    bathymetryExtent: {
+        xmin : 90, // full domain
+        xmax :  325.83,
+        ymin :  -70,
+        ymax : 70,
+    },
     // xmin: -121.67+360,
     // xmax: -34.17+360,
     // ymin: -77.5,
@@ -127,16 +133,10 @@ let lifeCycle = {
     },
 
     modelStepDidFinish: (model, controller) =>{
-        if(model.discretization.stepNumber == 1){
-            // controller.downloadCurrentGridHeights();
-        }
-        if(model.discretization.stepNumber % 10 !== 0){
-            return true;
-        }
-        else{
-            console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60);
-            return false;
-        }
+        if(model.discretization.stepNumber % 10 !== 0) return true
+
+        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60);
+        return false;
     },
 
     dataWasLoaded: (model)=>{
