@@ -1,3 +1,6 @@
 [submodule "easyWave"]
 	path = easyWave
 	url = https://gitext.gfz-potsdam.de/geoperil/easyWave
+[submodule "nami"]
+	path = nami
+	url = https://gitlab.com/nami_repos/nami
