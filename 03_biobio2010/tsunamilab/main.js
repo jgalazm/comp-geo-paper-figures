@@ -61,24 +61,34 @@ let [w,h] = [944, 520];
 // let h = 850;
 debugger;
 
+const xmin = 90;
+const xmax = 325.83;
+const ymin = -79;
+const ymax = 79;
+const ds = 15/60;
+const nx = parseInt((xmax-xmin)/ds);
+const ny = parseInt((ymax-ymin)/ds);
+
+
+
 
 let data = {
-    xmin : 90, // full domain
-    xmax :  325.83,
-    ymin :  -60,
-    ymax : 70,
+    xmin : xmin, // full domain
+    xmax :  xmax,
+    ymin :  ymin,
+    ymax : ymax,
     bathymetryExtent: {
         xmin : 90, // full domain
         xmax :  325.83,
-        ymin :  -70,
-        ymax : 70,
+        ymin :  -85,
+        ymax : 85,
     },
     // xmin: -121.67+360,
     // xmax: -34.17+360,
     // ymin: -77.5,
     // ymax: -6.67,
-    waveWidth: w,
-    waveHeight: h,
+    waveWidth: nx,
+    waveHeight: ny,
     coordinates: 'spherical',
     bathymetry: '../data/bathymetry15min',
     // bathymetry: '../data/bathymetry_small5min',
