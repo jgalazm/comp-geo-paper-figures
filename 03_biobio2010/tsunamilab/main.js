@@ -40,8 +40,9 @@ let colormap = {
 
 
 
-let w = parseInt(4717);
-let h = parseInt(2600);
+// let w = parseInt(4717*5);
+// let h = parseInt(2600*5);
+let [w,h] = [944, 520];
 
 // 12min
 // let w = 1000;
@@ -73,7 +74,7 @@ let data = {
     waveWidth: w,
     waveHeight: h,
     coordinates: 'spherical',
-    bathymetry: '../data/bathymetry3min',
+    bathymetry: '../data/bathymetry15min',
     // bathymetry: '../data/bathymetry_small5min',
     binaryBathymetry: true,
     earthquake: '../data/earthquake.csv',
@@ -81,8 +82,8 @@ let data = {
 
 let output = {
     colormap: colormap,
-    displayWidth:  w/4,
-    displayHeight: h/4,
+    displayWidth:  w,
+    displayHeight: h,
     stopTime: 60*60*25,
     displayOption: 'heights',
     pois:{
@@ -111,7 +112,7 @@ let output = {
 
 console.log('did something!!')
 let lifeCycle = {
-    controllerSimulationDidFinish : (model, controller) =>{
+    simulationDidFinish : (model, controller) =>{
         // controller.5();
 
         timeEnd = performance.now();
@@ -120,36 +121,16 @@ let lifeCycle = {
         controller.downloadAllPois();    
 
         const el = document.createElement('h1');
+        el.style="color:grey;"
         el.textContent = `${timeEnd-timeStart} ms`;
         document.body.appendChild(el);
-
-        // let arrivalsBuffer = [ ... model.currentArrivalTimes ];
-
-        // var i0 = d3.interpolateHsvLong(d3.hsv(120, 1, 0.65), d3.hsv(60, 1, 0.90)),
-        // i1 = d3.interpolateHsvLong(d3.hsv(60, 1, 0.90), d3.hsv(0, 0, 0.95));
-        // var interpolateTerrain = function(t) { return t < 0.5 ? i0(t * 2) : i1((t - 0.5) * 2); },
-        // color = d3.scaleSequential(interpolateTerrain).domain([0, output.stopTime]);
-
-        // let contours = d3.contours()
-        //                 .size([data.waveWidth,data.waveHeight ])
-        //                 .thresholds(d3.range(0, output.stopTime, 60*60))(arrivalsBuffer);
-        // var svg = d3.select("svg"),
-        //     width = +svg.attr("width"),
-        //     height = +svg.attr("height");
-                    
-        // svg.selectAll("path")
-        //     .data(contours)
-        //     .enter().append("path")
-        //     .attr("d", d3.geoPath(d3.geoIdentity() ))
-            // .attr("fill", function(d) { return color(d.value); })
-
     },
 
     modelStepDidFinish: (model, controller) =>{
         if(model.discretization.stepNumber == 1){
             // controller.downloadCurrentGridHeights();
         }
-        if(model.discretization.stepNumber % 100 !== 0){
+        if(model.discretization.stepNumber % 10 !== 0){
             return true;
         }
         else{
