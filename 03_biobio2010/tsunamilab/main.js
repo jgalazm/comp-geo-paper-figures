@@ -63,8 +63,8 @@ debugger;
 
 const xmin = 90;
 const xmax = 325.83;
-const ymin = -78;
-const ymax = 0;
+const ymin = -60;
+const ymax = 70;
 const ds = 15/60;
 const nx = parseInt((xmax-xmin)/ds);
 const ny = parseInt((ymax-ymin)/ds);
