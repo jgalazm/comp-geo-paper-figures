@@ -59,16 +59,14 @@ let [w,h] = [944, 520];
 // small 5min
 // let w = 1050;
 // let h = 850;
-debugger;
 
 const xmin = 90;
 const xmax = 325.83;
 const ymin = -60;
 const ymax = 70;
-const ds = 15/60;
+const ds = 3/60;
 const nx = parseInt((xmax-xmin)/ds);
 const ny = parseInt((ymax-ymin)/ds);
-
 
 
 
@@ -94,8 +92,8 @@ let data = {
 
 let output = {
     colormap: colormap,
-    displayWidth:  nx,
-    displayHeight: ny,
+    displayWidth:  nx/4,
+    displayHeight: ny/4,
     stopTime: 60*60*25,
     displayOption: 'heights',
     pois:{
