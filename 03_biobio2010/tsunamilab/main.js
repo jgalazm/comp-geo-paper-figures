@@ -84,7 +84,7 @@ let data = {
     waveWidth: nx,
     waveHeight: ny,
     coordinates: 'spherical',
-    bathymetry: '../data/bathymetry15min',
+    bathymetry: '../data/bathymetry3min',
     // bathymetry: '../data/bathymetry_small5min',
     binaryBathymetry: true,
     earthquake: '../data/earthquake.csv',
@@ -120,10 +120,11 @@ let output = {
     }
 };
 
+
 console.log('did something!!')
 let lifeCycle = {
     simulationDidFinish : (model, controller) =>{
-        // controller.5();
+    //     // controller.5();
 
         timeEnd = performance.now();
         controller.downloadMaximumHeights();
@@ -145,6 +146,7 @@ let lifeCycle = {
 
     dataWasLoaded: (model)=>{
         document.body.appendChild(model.canvas);
+        console.log('loaded data');
     }
 }
 
