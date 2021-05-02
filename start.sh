@@ -1,0 +1,1 @@
+jupyter lab --no-browser --port=8000 --ip=0.0.0.0 --allow-root --NotebookApp.token=$JUPYTER_PASS

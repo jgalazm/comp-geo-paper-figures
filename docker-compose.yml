@@ -1,0 +1,17 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  local:
+    build: .
+    image: local-image
+    volumes:
+      - ./:/home/jovyan/work/
+    ports:
+      - 8000:8000
+    command: ["./work/start.sh"]
+  web-server:
+    image: local-image
+    volumes:
+      - ./:/home/jovyan/work/
+    ports:
+      - 3000:8000
+    command: ["python","-m","http.server"]
