@@ -1,5 +1,11 @@
 version: "3.9"  # optional since v1.27.0
 services:
+  nami:
+    build: $NAMI_PATH
+    image: nami
+    volumes:
+      - build-volume:/nami/build
+    tty: true
   local:
     build: .
     image: local-image
@@ -12,6 +18,10 @@ services:
     image: local-image
     volumes:
       - ./:/home/jovyan/work/
+      - build-volume:/home/jovyan/nami
     ports:
       - 3000:8000
     command: ["python","-m","http.server"]
+
+volumes:
+  build-volume:    
