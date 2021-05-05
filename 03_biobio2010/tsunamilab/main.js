@@ -64,7 +64,7 @@ const xmin = 90;
 const xmax = 325.83;
 const ymin = -60;
 const ymax = 70;
-const ds = 3/60;
+const ds = 30/60;
 const nx = parseInt((xmax-xmin)/ds);
 const ny = parseInt((ymax-ymin)/ds);
 
@@ -81,10 +81,10 @@ let data = {
         ymin :  -85,
         ymax : 85,
     },  
-    waveWidth: nx,
-    waveHeight: ny,
+    waveWidth: parseInt(nx),
+    waveHeight: parseInt(ny),
     coordinates: 'spherical',
-    bathymetry: '../data/bathymetry3min',
+    bathymetry: '../data/bathymetry30min',
     // bathymetry: '../data/bathymetry_small5min',
     binaryBathymetry: true,
     earthquake: '../data/earthquake.csv',
@@ -92,8 +92,8 @@ let data = {
 
 let output = {
     colormap: colormap,
-    displayWidth:  nx/4,
-    displayHeight: ny/4,
+    displayWidth:  nx,
+    displayHeight: ny,
     stopTime: 60*60*25,
     displayOption: 'heights',
     pois:{
@@ -127,8 +127,8 @@ let lifeCycle = {
     //     // controller.5();
 
         timeEnd = performance.now();
-        controller.downloadMaximumHeights();
-        controller.downloadArrivalTimes() 
+        // controller.downloadMaximumHeights();
+        // controller.downloadArrivalTimes() 
         controller.downloadAllPois();    
 
         const el = document.createElement('h1');
@@ -136,11 +136,14 @@ let lifeCycle = {
         el.textContent = `${timeEnd-timeStart} ms`;
         document.body.appendChild(el);
     },
+    modelSimulationWillStart: (model, thisController) => {
+        // thisController.paused = true;
+    },
 
     modelStepDidFinish: (model, controller) =>{
-        if(model.discretization.stepNumber % 50 !== 0) return true
+        if(model.discretization.stepNumber % 5 !== 0) return true
 
-        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60);
+        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60, (performance.now() - timeStart)/(model.currentTime/controller.stopTime)/1000);
         return false;
     },
 
