@@ -22,6 +22,11 @@ services:
     ports:
       - 3000:8000
     command: ["python","-m","http.server"]
+  geoclaw:
+    image: clawpack/v5.7.1_dockerimage:latest
+    volumes:
+      - ./:/home/jovyan/work/    
+    tty: true
 
 volumes:
   build-volume:    
