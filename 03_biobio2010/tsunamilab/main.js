@@ -81,8 +81,8 @@ let data = {
         ymin :  -85,
         ymax : 85,
     },  
-    waveWidth: nx,
-    waveHeight: ny,
+    waveWidth: parseInt(nx),
+    waveHeight: parseInt(ny),
     coordinates: 'spherical',
     bathymetry: '../data/bathymetry3min',
     // bathymetry: '../data/bathymetry_small5min',
@@ -136,11 +136,14 @@ let lifeCycle = {
         el.textContent = `${timeEnd-timeStart} ms`;
         document.body.appendChild(el);
     },
+    modelSimulationWillStart: (model, thisController) => {
+        // thisController.paused = true;
+    },
 
     modelStepDidFinish: (model, controller) =>{
-        if(model.discretization.stepNumber % 50 !== 0) return true
+        if(model.discretization.stepNumber % 5 !== 0) return true
 
-        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60);
+        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60, (performance.now() - timeStart)/(model.currentTime/controller.stopTime)/1000);
         return false;
     },
 
