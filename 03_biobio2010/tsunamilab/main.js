@@ -127,8 +127,8 @@ let lifeCycle = {
     //     // controller.5();
 
         timeEnd = performance.now();
-        // controller.downloadMaximumHeights();
-        // controller.downloadArrivalTimes() 
+        controller.downloadMaximumHeights();
+        controller.downloadArrivalTimes() 
         controller.downloadAllPois();    
 
         const el = document.createElement('h1');
