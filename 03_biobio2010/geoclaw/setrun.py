@@ -84,7 +84,7 @@ def setrun(claw_pkg='geoclaw'):
 
 
     # Number of grid cells: Coarsest grid
-    ds = 3*60/60
+    ds = 30/60
     clawdata.num_cells[0] = int((clawdata.upper[0] - clawdata.lower[0])/ds)
     clawdata.num_cells[1] = int((clawdata.upper[1] - clawdata.lower[1])/ds)
 
@@ -130,8 +130,8 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 18
-        clawdata.tfinal = 25*3600.
+        clawdata.num_output_times = 25
+        clawdata.tfinal = 25*3600
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
@@ -288,9 +288,9 @@ def setrun(claw_pkg='geoclaw'):
     amrdata.amr_levels_max = 2
 
     # List of refinement ratios at each level (length at least mxnest-1)
-    amrdata.refinement_ratios_x = [2,6]
-    amrdata.refinement_ratios_y = [2,6]
-    amrdata.refinement_ratios_t = [2,6]
+    amrdata.refinement_ratios_x = [10,6]
+    amrdata.refinement_ratios_y = [10,6]
+    amrdata.refinement_ratios_t = [10,6]
 
 
     # Specify type of each aux variable in amrdata.auxtype.
@@ -366,7 +366,7 @@ def setrun(claw_pkg='geoclaw'):
         "46412": {"location": [239.437, 32.492]},
         "43412": {"location": [253.03300000000002, 16.045]},
         "43413": {"location": [259.91700000000003, 11.012]},
-        "32411": {"location": [269.12 - 360, 4.953]},
+        "32411": {"location": [269.12, 4.953]},
         "32412": {"location": [273.626, -17.984]},
         "32413": {"location": [266.483, -7.406]},
         "32401": {"location": [286.579, -20.474]},
