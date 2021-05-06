@@ -82,7 +82,7 @@ def setplot(plotdata=None):
     plotitem.pcolor_cmax = 0.2
     plotitem.add_colorbar = True
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
+    plotitem.patchedges_show = [1, 1, 0]
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -92,7 +92,7 @@ def setplot(plotdata=None):
     plotitem.pcolor_cmax = 100.0
     plotitem.add_colorbar = False
     plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
+    plotitem.patchedges_show = [1, 1, 0]
     plotaxes.xlimits = [90, 325.83]
     plotaxes.ylimits = [-85,85]
 

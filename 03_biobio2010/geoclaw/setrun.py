@@ -288,9 +288,9 @@ def setrun(claw_pkg='geoclaw'):
     amrdata.amr_levels_max = 2
 
     # List of refinement ratios at each level (length at least mxnest-1)
-    amrdata.refinement_ratios_x = [2,6]
-    amrdata.refinement_ratios_y = [2,6]
-    amrdata.refinement_ratios_t = [2,6]
+    amrdata.refinement_ratios_x = [20,6]
+    amrdata.refinement_ratios_y = [20,6]
+    amrdata.refinement_ratios_t = [20,6]
 
 
     # Specify type of each aux variable in amrdata.auxtype.
@@ -340,8 +340,10 @@ def setrun(claw_pkg='geoclaw'):
     rundata.regiondata.regions = []
     # to specify regions of refinement append lines of the form
     #  [minlevel,maxlevel,t1,t2,x1,x2,y1,y2]
-    rundata.regiondata.regions.append([3, 3, 0., 10000., -85,-72,-38,-25])
-    rundata.regiondata.regions.append([3, 3, 8000., 26000., -90,-80,-30,-15])
+    # rundata.regiondata.regions.append([2, 2, 0., 10000., 90, 325.83, -85, 85])
+    # rundata.regiondata.regions.append([3, 3, 0., 26000., 90, 325.83, -85, 85])
+    rundata.regiondata.regions.append([3, 3, 0., 10000., -85+360,-72+360,-38,-25])
+    # rundata.regiondata.regions.append([3, 3, 8000., 26000., -90,-80,-30,-15])
 
     # ---------------
     # Gauges:
@@ -388,7 +390,7 @@ def setgeo(rundata):
     # Refinement settings
     refinement_data = rundata.refinement_data
     refinement_data.variable_dt_refinement_ratios = True
-    refinement_data.wave_tolerance = 1.e-1
+    refinement_data.wave_tolerance = 5.e-2
     refinement_data.deep_depth = 1e2
     refinement_data.max_level_deep = 3
 
