@@ -27,3 +27,6 @@ shore-interaction/nami/poism4000
 04_tohoku2011/comparison/energy2011.png
 .DS_Store
 **/error.msg
+**/*.tt1
+**/*.tt2
+**/*.tt3
