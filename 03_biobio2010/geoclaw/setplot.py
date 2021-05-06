@@ -81,8 +81,8 @@ def setplot(plotdata=None):
     plotitem.pcolor_cmin = -0.2
     plotitem.pcolor_cmax = 0.2
     plotitem.add_colorbar = True
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = [1, 1, 0]
+    plotitem.amr_celledges_show = [1, 0, 0]
+    plotitem.patchedges_show = 0
 
     # Land
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -91,21 +91,21 @@ def setplot(plotdata=None):
     plotitem.pcolor_cmin = 0.0
     plotitem.pcolor_cmax = 100.0
     plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = [1, 1, 0]
+    # plotitem.amr_celledges_show = []
+    # plotitem.patchedges_show = []
     plotaxes.xlimits = [90, 325.83]
     plotaxes.ylimits = [-85,85]
 
     # add contour lines of bathy if desired:
-    plotitem = plotaxes.new_plotitem(plot_type='2d_contour')
-    plotitem.show = False
-    plotitem.plot_var = geoplot.topo
-    plotitem.contour_levels = linspace(-3000,-3000,1)
-    plotitem.amr_contour_colors = ['y']  # color on each level
-    plotitem.kwargs = {'linestyles':'solid','linewidths':2}
-    plotitem.amr_contour_show = [1,0,0]  
-    plotitem.celledges_show = 0
-    plotitem.patchedges_show = 0
+    # plotitem = plotaxes.new_plotitem(plot_type='2d_contour')
+    # plotitem.show = False
+    # plotitem.plot_var = geoplot.topo
+    # plotitem.contour_levels = linspace(-3000,-3000,1)
+    # plotitem.amr_contour_colors = ['y']  # color on each level
+    # plotitem.kwargs = {'linestyles':'solid','linewidths':2}
+    # plotitem.amr_contour_show = [0,0,0]  
+    # plotitem.celledges_show = 0
+    # plotitem.patchedges_show = 0
 
 
     #-----------------------------------------
