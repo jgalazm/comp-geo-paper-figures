@@ -71,7 +71,7 @@ def setplot(plotdata=None):
         pylab.title('Surface at %4.2f hours' % t, fontsize=20)
         pylab.xticks(fontsize=15)
         pylab.yticks(fontsize=15)
-    plotaxes.afteraxes = fixup
+    # plotaxes.afteraxes = fixup
 
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
@@ -91,9 +91,9 @@ def setplot(plotdata=None):
     plotitem.pcolor_cmin = 0.0
     plotitem.pcolor_cmax = 100.0
     plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [1,1,0]
+    plotitem.amr_celledges_show = [0,0,0]
     plotitem.patchedges_show = 1
-    plotaxes.xlimits = [-120,-60]
+    plotaxes.xlimits = [-120+360,-60+360]
     plotaxes.ylimits = [-60,0]
 
     # add contour lines of bathy if desired:

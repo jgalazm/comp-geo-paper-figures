@@ -13,11 +13,12 @@ import numpy as np
 
 try:
     CLAW = os.environ['CLAW']
+    HOME = os.environ["HOME"]
 except:
     raise Exception("*** Must first set CLAW enviornment variable")
 
 # Scratch directory for storing topo and dtopo files:
-scratch_dir = os.path.join(CLAW, 'geoclaw', 'scratch')
+scratch_dir = os.path.join(HOME, "work", "03_biobio2010", 'data')
 
 
 #------------------------------
@@ -74,17 +75,18 @@ def setrun(claw_pkg='geoclaw'):
     clawdata.num_dim = num_dim
 
     # Lower and upper edge of computational domain:
-    clawdata.lower[0] = -120.0      # west longitude
-    clawdata.upper[0] = -60.0       # east longitude
+    clawdata.lower[0] = 90     # west longitude
+    clawdata.upper[0] = 325.83       # east longitude
 
     clawdata.lower[1] = -60.0       # south latitude
-    clawdata.upper[1] = 0.0         # north latitude
+    clawdata.upper[1] = 70        # north latitude
 
 
 
     # Number of grid cells: Coarsest grid
-    clawdata.num_cells[0] = 30
-    clawdata.num_cells[1] = 30
+    ds = 3*60/60
+    clawdata.num_cells[0] = int((clawdata.upper[0] - clawdata.lower[0])/ds)
+    clawdata.num_cells[1] = int((clawdata.upper[1] - clawdata.lower[1])/ds)
 
     # ---------------
     # Size of system:
@@ -129,7 +131,7 @@ def setrun(claw_pkg='geoclaw'):
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
         clawdata.num_output_times = 18
-        clawdata.tfinal = 9*3600.
+        clawdata.tfinal = 25*3600.
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
@@ -283,7 +285,7 @@ def setrun(claw_pkg='geoclaw'):
     amrdata.max1d = 60
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 3
+    amrdata.amr_levels_max = 2
 
     # List of refinement ratios at each level (length at least mxnest-1)
     amrdata.refinement_ratios_x = [2,6]
@@ -346,7 +348,7 @@ def setrun(claw_pkg='geoclaw'):
     # ---------------
     rundata.gaugedata.gauges = []
     # for gauges append lines of the form  [gaugeno, x, y, t1, t2]
-    rundata.gaugedata.gauges.append([32412, -86.392, -17.975, 0., 1.e10])
+    rundata.gaugedata.gauges.append([32412, -86.392 + 360, -17.975, 0., 1.e10])
     
 
     return rundata
@@ -394,14 +396,14 @@ def setgeo(rundata):
     topo_data = rundata.topo_data
     # for topography, append lines of the form
     #    [topotype, minlevel, maxlevel, t1, t2, fname]
-    topo_path = os.path.join(scratch_dir, 'etopo10min120W60W60S0S.asc')
+    topo_path = os.path.join(scratch_dir,  f"topography{3}min.tt2")
     topo_data.topofiles.append([2, 1, 3, 0., 1.e10, topo_path])
 
     # == setdtopo.data values ==
     dtopo_data = rundata.dtopo_data
     # for moving topography, append lines of the form :   (<= 1 allowed for now!)
     #   [topotype, minlevel,maxlevel,fname]
-    dtopo_path = os.path.join(scratch_dir, 'dtopo_usgs100227.tt3')
+    dtopo_path = os.path.join(scratch_dir, f"earthquake.tt3")
     dtopo_data.dtopofiles.append([3,3,3,dtopo_path])
     dtopo_data.dt_max_dtopo = 0.2
 
