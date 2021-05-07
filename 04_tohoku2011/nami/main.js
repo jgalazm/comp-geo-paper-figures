@@ -39,7 +39,7 @@ let colormap = {
 
 
 // 3 min 
-let w = parseInt(4717/10);
+let w = parseInt(4716/10);
 let h = parseInt(2600/10);
 
 // 12min
