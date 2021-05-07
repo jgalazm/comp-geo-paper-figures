@@ -1,27 +1,39 @@
 version: "3.9"  # optional since v1.27.0
 services:
-  nami:
-    build: $NAMI_PATH
-    image: nami
-    volumes:
-      - build-volume:/nami/build
-    tty: true
   local:
     build: .
     image: local-image
     volumes:
       - ./:/home/jovyan/work/
+      - bathymetry-data-volume:/home/jovyan/data
     ports:
       - 8000:8000
-    command: ["./work/start.sh"]
+    command: ["./work/start.sh"]  
   web-server:
     image: local-image
     volumes:
       - ./:/home/jovyan/work/
-      - build-volume:/home/jovyan/nami
+      - nami-build-volume:/home/jovyan/nami
     ports:
       - 3000:8000
-    command: ["python","-m","http.server"]
+    command: ["python","-m","http.server"]    
+  geoclaw:
+    image: clawpack/v5.7.1_dockerimage:latest
+    volumes:
+      - ./:/home/jovyan/work/
+      - bathymetry-data-volume:/home/jovyan/data    
+    ports:
+      - 4000:8000
+    command: ["./work/start.sh"]    
+  nami:
+    build: $NAMI_PATH
+    image: nami
+    volumes:
+      - nami-build-volume:/nami/build
+    tty: true
+
 
 volumes:
-  build-volume:    
+  nami-build-volume:
+  bathymetry-data-volume:
+  
