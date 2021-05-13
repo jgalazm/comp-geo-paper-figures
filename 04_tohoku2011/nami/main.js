@@ -39,8 +39,8 @@ let colormap = {
 
 
 // 3 min 
-let w = parseInt(4716/10);
-let h = parseInt(2600/10);
+let w = parseInt(4716);
+let h = parseInt(2600);
 
 // 12min
 // let w = 1000;
@@ -126,6 +126,7 @@ let lifeCycle = {
         el.style="color:grey;"
         el.textContent = `${timeEnd-timeStart} ms`;
         document.body.appendChild(el);
+        console.log(timeEnd-timeStart);
 
 
     },
