@@ -21,10 +21,7 @@ shore-interaction/nami/pois4000
 shore-interaction/nami/pois50
 shore-interaction/nami/poism4000
 .vscode
-03_biobio2010/comparison/timeseries2010.png
-03_biobio2010/comparison/energy2010.png
-04_tohoku2011/comparison/timeseries2011.png
-04_tohoku2011/comparison/energy2011.png
+**/*.png
 .DS_Store
 **/error.msg
 **/*.tt1
@@ -42,3 +39,4 @@ shore-interaction/nami/poism4000
 **/.output
 **/.plots
 **/pyclaw.log
+**/*.lst.swp
