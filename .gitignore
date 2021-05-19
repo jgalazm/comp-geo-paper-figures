@@ -42,3 +42,5 @@ shore-interaction/nami/poism4000
 **/.output
 **/.plots
 **/pyclaw.log
+**/job_number.log
+**/make_logs.log
