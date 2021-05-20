@@ -411,7 +411,7 @@ def setgeo(rundata):
     geo_data.earth_radius = 6367.5e3
 
     # == Forcing Options
-    geo_data.coriolis_forcing = False
+    geo_data.coriolis_forcing = True
 
     # == Algorithm and Initial Conditions ==
     geo_data.sea_level = 0.0
