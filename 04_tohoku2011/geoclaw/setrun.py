@@ -85,7 +85,7 @@ def setrun(claw_pkg='geoclaw'):
 
 
     # Number of grid cells: Coarsest grid
-    ds = 60/60
+    ds = 30/60
     clawdata.num_cells[0] = int((clawdata.upper[0] - clawdata.lower[0])/ds)
     clawdata.num_cells[1] = int((clawdata.upper[1] - clawdata.lower[1])/ds)
 
@@ -286,7 +286,7 @@ def setrun(claw_pkg='geoclaw'):
     amrdata.max1d = 60
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 1
+    amrdata.amr_levels_max = 2
 
     # List of refinement ratios at each level (length at least mxnest-1)
     amrdata.refinement_ratios_x = [10,6]
@@ -412,7 +412,7 @@ def setgeo(rundata):
     geo_data.earth_radius = 6367.5e3
 
     # == Forcing Options
-    geo_data.coriolis_forcing = False
+    geo_data.coriolis_forcing = True
 
     # == Algorithm and Initial Conditions ==
     geo_data.sea_level = 0.0
