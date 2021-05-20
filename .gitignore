@@ -40,3 +40,8 @@ shore-interaction/nami/poism4000
 **/.plots
 **/pyclaw.log
 **/*.lst.swp
+**/job_number.log
+**/make_logs.log
+**/energy2010.png
+**/timeseries2010.png
+**/.poi_accepted.lst.swp
