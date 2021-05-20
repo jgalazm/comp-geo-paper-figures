@@ -31,6 +31,7 @@ if [ -n "${COPY}" ]; then
   send_script_file setplot.py
   send_script_file Makefile
   send_script_file run_in_cluster.sh
+  send_script_file plot_in_cluster.sh
 fi
 
 ssh jdgalaz@mazinger.ing.puc.cl "cd "$REMOTE_SCRIPTS_FOLDER_PATH"; export CLAW=/home/jdgalaz/clawpack-v5.7.1; make" > make_logs.log
