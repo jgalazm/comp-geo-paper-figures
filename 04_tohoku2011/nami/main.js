@@ -38,7 +38,8 @@ let colormap = {
 
 
 
-let w = parseInt(4717);
+// 3 min 
+let w = parseInt(4716);
 let h = parseInt(2600);
 
 // 12min
@@ -63,6 +64,12 @@ let data = {
     xmax :  325.83,
     ymin :  -60,
     ymax : 70,
+    bathymetryExtent: {
+        xmin : 90, // full domain
+        xmax :  325.83,
+        ymin :  -85,
+        ymax : 85,
+    },      
     // xmin: -121.67+360,
     // xmax: -34.17+360,
     // ymin: -77.5,
@@ -107,51 +114,34 @@ let output = {
 };
 
 let lifeCycle = {
-    controllerSimulationDidFinish : (model, controller) =>{
+    simulationDidFinish : (model, controller) =>{
         // controller.5();
         
+        timeEnd = performance.now();
         controller.downloadMaximumHeights();
         controller.downloadArrivalTimes() 
         controller.downloadAllPois();    
 
-        // let arrivalsBuffer = [ ... model.currentArrivalTimes ];
+        const el = document.createElement('h1');
+        el.style="color:grey;"
+        el.textContent = `${timeEnd-timeStart} ms`;
+        document.body.appendChild(el);
+        console.log(timeEnd-timeStart);
 
-        // var i0 = d3.interpolateHsvLong(d3.hsv(120, 1, 0.65), d3.hsv(60, 1, 0.90)),
-        // i1 = d3.interpolateHsvLong(d3.hsv(60, 1, 0.90), d3.hsv(0, 0, 0.95));
-        // var interpolateTerrain = function(t) { return t < 0.5 ? i0(t * 2) : i1((t - 0.5) * 2); },
-        // color = d3.scaleSequential(interpolateTerrain).domain([0, output.stopTime]);
-
-        // let contours = d3.contours()
-        //                 .size([data.waveWidth,data.waveHeight ])
-        //                 .thresholds(d3.range(0, output.stopTime, 60*60))(arrivalsBuffer);
-        // var svg = d3.select("svg"),
-        //     width = +svg.attr("width"),
-        //     height = +svg.attr("height");
-                    
-        // svg.selectAll("path")
-        //     .data(contours)
-        //     .enter().append("path")
-        //     .attr("d", d3.geoPath(d3.geoIdentity() ))
-            // .attr("fill", function(d) { return color(d.value); })
 
     },
 
     modelStepDidFinish: (model, controller) =>{
-        if(model.discretization.stepNumber == 1){
-            controller.downloadCurrentGridHeights();
-        }
-        if(model.discretization.stepNumber % 100 !== 0){
-            return true;
-        }
-        else{
-            console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60);
-            return false;
-        }
+        if(model.discretization.stepNumber % 5 !== 0) return true
+
+        console.log(model.discretization.stepNumber, model.currentTime/60/60, controller.stopTime/60/60, (performance.now() - timeStart)/(model.currentTime/controller.stopTime)/1000);
+        return false;
     },
 
     dataWasLoaded: (model)=>{
         document.body.appendChild(model.canvas);
+        console.log('loaded data');
     }
 }
-
-let thisApp = new NAMI.app(data, output, lifeCycle);
+timeStart = performance.now()
+let thisApp = new Nami(data, output, lifeCycle);

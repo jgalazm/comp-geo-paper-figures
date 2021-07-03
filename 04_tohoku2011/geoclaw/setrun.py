@@ -18,7 +18,8 @@ except:
     raise Exception("*** Must first set CLAW enviornment variable")
 
 # Scratch directory for storing topo and dtopo files:
-scratch_dir = os.path.join(HOME, "work", "03_biobio2010", 'data')
+topography_dir = os.path.join(HOME, "work", "03_biobio2010", 'data')
+finitefault_dir = os.path.join(HOME, "work", "04_tohoku2011", 'data')
 
 
 #------------------------------
@@ -130,7 +131,7 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 25
+        clawdata.num_output_times = 10
         clawdata.tfinal = 25*3600
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
@@ -431,14 +432,14 @@ def setgeo(rundata):
     topo_data = rundata.topo_data
     # for topography, append lines of the form
     #    [topotype, minlevel, maxlevel, t1, t2, fname]
-    topo_path = os.path.join(scratch_dir,  f"topography{3}min.tt2")
+    topo_path = os.path.join(topography_dir,  f"topography{3}min.tt2")
     topo_data.topofiles.append([2, 1, 3, 0., 1.e10, topo_path])
 
     # == setdtopo.data values ==
     dtopo_data = rundata.dtopo_data
     # for moving topography, append lines of the form :   (<= 1 allowed for now!)
     #   [topotype, minlevel,maxlevel,fname]
-    dtopo_path = os.path.join(scratch_dir, f"earthquake.tt3")
+    dtopo_path = os.path.join(finitefault_dir, f"earthquake.tt3")
     dtopo_data.dtopofiles.append([3,3,3,dtopo_path])
     dtopo_data.dt_max_dtopo = 0.2
 
